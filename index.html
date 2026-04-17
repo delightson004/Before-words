@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Before Words</title>
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LEKJ0T5LPS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LEKJ0T5LPS');
+</script>
   <meta name="author" content="D"/>
   <!-- MERLIN SHARINA DARATHI -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
@@ -685,6 +693,29 @@
       if (window.scrollY > 100) hint.classList.add('hidden');
       else hint.classList.remove('hidden');
     }, { passive: true });
+// 🔥 Visit counter
+fetch('https://api.countapi.xyz/hit/delight-beforewords/visits');
+
+// 🔥 Scroll tracking
+let scrollTracked = false;
+
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
+
+  if (!scrollTracked && scrollPosition > pageHeight * 0.8) {
+    scrollTracked = true;
+
+    if (typeof gtag === "function") {
+      gtag('event', 'read_complete', {
+        event_category: 'engagement',
+        event_label: 'Reached Ending'
+      });
+    }
+
+    console.log("User reached near ending");
+  }
+});
   </script>
 </body>
 </html>
