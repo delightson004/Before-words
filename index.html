@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Before Words</title>
+  <meta name="author" content="D"/>
+  <!-- MERLIN SHARINA DARATHI -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --paper: #0f0f18;
+      --text: #e8e4dc;
+      --muted: #9a9080;
+      --accent: #c9a96e;
+      --glow: rgba(201, 169, 110, 0.12);
+      --divider: rgba(201, 169, 110, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      line-height: 1.9;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Stars background */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--dur, 3s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      opacity: 0;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: var(--max-op, 0.6); }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,169,110,0.06), transparent 70%);
+      top: -100px; left: -100px;
+      animation-duration: 25s;
+    }
+
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(100,120,200,0.05), transparent 70%);
+      bottom: 10%; right: -80px;
+      animation-duration: 18s;
+      animation-delay: -8s;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, 40px); }
+    }
+
+    /* Main container */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 60px 0 80px;
+      opacity: 0;
+      animation: fadeUp 1.4s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .header-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      opacity: 0.7;
+    }
+
+    .header-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 8vw, 64px);
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .header-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--divider), transparent);
+      margin: 40px auto 0;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stanza {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .stanza p {
+      font-size: clamp(16px, 2.5vw, 19px);
+      color: var(--text);
+      line-height: 2;
+    }
+
+    .stanza p.italic {
+      font-style: italic;
+      color: var(--muted);
+      font-size: clamp(15px, 2.2vw, 17px);
+    }
+
+    .stanza p.small {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* Divider */
+    .divider {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--divider);
+      font-size: 18px;
+      letter-spacing: 0.5em;
+    }
+
+    .divider::after {
+      content: '✦';
+      color: var(--accent);
+      opacity: 0.5;
+    }
+
+    /* Acrostic section */
+    .acrostic {
+      text-align: center;
+      margin: 0 auto;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .acrostic-line {
+      display: block;
+      font-size: clamp(16px, 2.5vw, 19px);
+      line-height: 2.1;
+      color: var(--text);
+    }
+
+    .acrostic-line .letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      color: var(--accent);
+      font-size: clamp(18px, 2.8vw, 21px);
+      display: inline-block;
+      min-width: 14px;
+    }
+
+    /* Signature */
+    .signature {
+      text-align: center;
+      padding-top: 80px;
+      opacity: 0;
+      animation: fadeUp 1.4s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .signature-line {
+      width: 60px;
+      height: 1px;
+      background: var(--divider);
+      margin: 0 auto 32px;
+    }
+
+    .signature-d {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .signature-sub {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 16px;
+      opacity: 0.5;
+    }
+
+    /* Fade up animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      z-index: 10;
+    }
+
+    .scroll-hint.hidden { opacity: 0; pointer-events: none; }
+
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+      50% { opacity: 0.8; transform: scaleY(1); }
+    }
+
+    /* Highlight on certain lines */
+    .highlight {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* Gap utility */
+    .gap { height: 32px; }
+    .gap-sm { height: 16px; }
+    .gap-lg { height: 56px; }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .page { padding: 60px 24px 100px; }
+      .header { padding: 40px 0 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" id="scrollHint">
+    <span>read</span>
+    <div class="scroll-arrow"></div>
+  </div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-label">a story that started before words</div>
+      <h1 class="header-title">— Before <em>Words</em> —</h1>
+      <div class="header-line"></div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">Some stories don't begin with a conversation.</p>
+        <p class="italic">Some begin before you understand anything at all.</p>
+        <p class="italic">Some begin before you're even born.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>There were two families.</p>
+        <p>Bound not by accident —</p>
+        <p>but by something older than memory.</p>
+        <p>A friendship that survived distance.</p>
+        <p>A connection that quietly stitched itself</p>
+        <p>through years, through prayers,</p>
+        <p>through dreams that were told out loud</p>
+        <p>and then gently handed to God.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>Even before I arrived in this world,</p>
+        <p>something was already being written.</p>
+        <p>I just didn't know yet</p>
+        <p>that I was one of the characters.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">I saw her sometimes.</p>
+        <p class="italic">The way you notice a star —</p>
+        <p class="italic">not because you went looking,</p>
+        <p class="italic">but because it was simply there.</p>
+        <p class="italic">Always there.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>We never really spoke.</p>
+        <p>We didn't need to, back then.</p>
+        <p>She was just someone who existed</p>
+        <p>at the edges of my life —</p>
+        <p>like a song playing in another room</p>
+        <p>that you never fully hear,</p>
+        <p>but somehow never forget.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">Then one day, I found something.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>A photograph.</p>
+        <p>Old. Small. Almost forgotten</p>
+        <p>between the pages of a life</p>
+        <p>that had kept moving without explaining itself.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>When I asked about it —</p>
+        <p>the answer arrived quietly.</p>
+        <p>No drama. No thunder.</p>
+        <p>Just a truth</p>
+        <p>that rearranged something inside me</p>
+        <p>so gently</p>
+        <p>I didn't even notice</p>
+        <p>until it was already done.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">And then there was a day —</p>
+        <p class="italic">just an ordinary afternoon —</p>
+        <p class="italic">when someone said something casual.</p>
+        <p class="italic">Unaware of its own weight.</p>
+        <p class="italic">Unaware of what it would become.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>A sentence.</p>
+        <p>Not a love letter.</p>
+        <p>Not a confession.</p>
+        <p>Just words —</p>
+        <p>that landed somewhere in me</p>
+        <p>like a seed lands in soil.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>Silent.</p>
+        <p>Still.</p>
+        <p>But already becoming something.</p>
+        <div class="gap-sm"></div>
+        <p>From that day,</p>
+        <p>I started seeing differently.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <div class="section">
+      <div class="stanza acrostic">
+        <span class="acrostic-line">Moments passed between us like seasons —</span>
+        <span class="acrostic-line">Each one small, each one unspoken,</span>
+        <span class="acrostic-line">Remembered only by me, perhaps.</span>
+        <span class="acrostic-line">Left unsaid, the way real feelings often are.</span>
+        <span class="acrostic-line">In every room we ever shared,</span>
+        <span class="acrostic-line">Nearest to each other, yet furthest apart.</span>
+        <span class="acrostic-line">Silence was the only language between us —</span>
+        <span class="acrostic-line">Held carefully, like something fragile.</span>
+        <span class="acrostic-line">And still I kept returning to the edges of it,</span>
+        <span class="acrostic-line">Returning to moments no one else even noticed.</span>
+        <span class="acrostic-line">It was never a choice, really.</span>
+        <span class="acrostic-line">Nothing about this ever was.</span>
+        <span class="acrostic-line">All I know is — I couldn't look away.</span>
+      </div>
+    </div>
+
+    <div class="gap"></div>
+
+    <div class="section">
+      <div class="stanza acrostic">
+        <span class="acrostic-line">Distance came, as it always does.</span>
+        <span class="acrostic-line">And life moved forward without asking permission.</span>
+        <span class="acrostic-line">Rooms emptied. Seasons changed. Time kept going.</span>
+        <span class="acrostic-line">And yet — something in me stayed still.</span>
+        <span class="acrostic-line">That something had no name.</span>
+        <span class="acrostic-line">Had no explanation.</span>
+        <span class="acrostic-line">It had only ever had a face.</span>
+      </div>
+    </div>
+
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">She went away to build her future.</p>
+        <p class="italic">I stayed and tried to build mine.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>We existed in the same world</p>
+        <p>but rarely in the same room.</p>
+        <p>And when we were —</p>
+        <div class="gap-sm"></div>
+        <p>I spoke to everyone around her.</p>
+        <p>She spoke to everyone around me.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>And somehow, in all that noise,</p>
+        <p>in all that closeness —</p>
+        <p>we remained the only two people</p>
+        <p>who never really spoke to each other.</p>
+        <div class="gap-sm"></div>
+        <p class="italic">Maybe we didn't need words yet.</p>
+        <p class="italic">Maybe the story wasn't ready for that chapter.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">Then came an evening.</p>
+        <p class="italic">At the turn of a year.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>She said two words</p>
+        <p>without looking at me.</p>
+        <div class="gap-sm"></div>
+        <p>And then —</p>
+        <p>just before leaving —</p>
+        <p>she looked.</p>
+        <div class="gap-sm"></div>
+        <p class="highlight">Just once.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>I don't know if she knows</p>
+        <p>what that one look did</p>
+        <p>to someone who had been</p>
+        <p>quietly collecting</p>
+        <p>every small moment</p>
+        <p>she never noticed she was giving.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">I haven't said anything.</p>
+        <p class="italic">Not directly.</p>
+        <p class="italic">Not yet.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>But somewhere in a username</p>
+        <p>that carries pieces of her name —</p>
+        <div class="gap-sm"></div>
+        <p>somewhere in a photograph</p>
+        <p>turned to art,</p>
+        <p>two people rendered in colour and silence —</p>
+        <div class="gap-sm"></div>
+        <p>somewhere in these words,</p>
+        <p>in these lines —</p>
+        <div class="gap-sm"></div>
+        <p class="highlight">I have been saying it.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>The only way I knew how.</p>
+        <div class="gap-sm"></div>
+        <p>Quietly.</p>
+        <p>Patiently.</p>
+        <p>The way you wait for someone</p>
+        <p>when you believe</p>
+        <p>the story was written</p>
+        <p>long before either of you</p>
+        <p>arrived to read it.</p>
+      </div>
+    </div>
+
+    <div class="section"><div class="divider"></div></div>
+
+    <!-- Ending -->
+    <div class="section">
+      <div class="stanza">
+        <p class="italic">Maybe she never finds this.</p>
+        <div class="gap-sm"></div>
+        <p class="italic">Maybe she does.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>Maybe she reads this and feels nothing.</p>
+        <p>And maybe that's okay too —</p>
+        <p>because some things deserve to be said</p>
+        <p>even when you don't know</p>
+        <p>if anyone is listening.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>But maybe —</p>
+        <div class="gap-sm"></div>
+        <p>Maybe she reads this</p>
+        <p>and something stirs.</p>
+        <p>Something quiet.</p>
+        <p>Something she can't quite name.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stanza">
+        <p>Maybe she reads this and remembers</p>
+        <p>that some stories</p>
+        <p>don't start with a conversation.</p>
+        <div class="gap-sm"></div>
+        <p>They start before that.</p>
+        <p>Long before that.</p>
+        <div class="gap-sm"></div>
+        <p>And maybe —</p>
+        <p>just maybe —</p>
+        <div class="gap-sm"></div>
+        <p class="highlight">they're still being written.</p>
+      </div>
+    </div>
+
+    <!-- Signature -->
+    <div class="signature">
+      <div class="signature-line"></div>
+      <div class="signature-d">D</div>
+      <div class="signature-sub">before words</div>
+    </div>
+
+  </div>
+
+  <script>
+    // Generate stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 2 + 0.5;
+      star.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        top: ${Math.random() * 100}%;
+        left: ${Math.random() * 100}%;
+        --dur: ${Math.random() * 4 + 2}s;
+        --delay: ${Math.random() * 6}s;
+        --max-op: ${Math.random() * 0.5 + 0.1};
+      `;
+      starsEl.appendChild(star);
+    }
+
+    // Scroll reveal
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // Hide scroll hint on scroll
+    const hint = document.getElementById('scrollHint');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) hint.classList.add('hidden');
+      else hint.classList.remove('hidden');
+    }, { passive: true });
+  </script>
+</body>
+</html>
