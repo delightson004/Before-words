@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Something I Never Said</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LEKJ0T5LPS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -8,654 +11,452 @@
   gtag('js', new Date());
   gtag('config', 'G-LEKJ0T5LPS');
 </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Before Words</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-    :root {
-      --bg: #f5e9da;
-      --paper: #fff3e6;
-      --text: #2a2118;
-      --muted: #8a7a6a;
-      --accent: #b07d3a;
-      --divider: rgba(176, 125, 58, 0.25);
-      --shadow: rgba(42, 33, 24, 0.06);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      line-height: 2;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Subtle paper texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 15% 10%, rgba(176,125,58,0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 70% at 85% 90%, rgba(176,125,58,0.04) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Floating petals / particles */
-    .particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0;
-      animation: float var(--dur, 12s) ease-in-out infinite;
-      animation-delay: var(--delay, 0s);
-    }
-
-    @keyframes float {
-      0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
-      10% { opacity: var(--max-op, 0.08); }
-      90% { opacity: var(--max-op, 0.08); }
-      100% { opacity: 0; transform: translateY(-20vh) rotate(360deg); }
-    }
-
-    /* Page */
-    .page {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 60px 40px 140px;
-    }
-
-    /* Header */
-    .header {
-      text-align: center;
-      padding: 80px 0 90px;
-      opacity: 0;
-      animation: fadeUp 1.6s ease forwards;
-      animation-delay: 0.3s;
-    }
-
-    .header-eyebrow {
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.55em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 28px;
-    }
-
-    .header-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 9vw, 76px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--text);
-      letter-spacing: 0.03em;
-    }
-
-    .header-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .header-rule {
-      width: 1px;
-      height: 70px;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      margin: 44px auto 0;
-      opacity: 0.35;
-    }
-
-    /* Card wrapper gives a lifted paper feel */
-    .card {
-      background: var(--paper);
-      border-radius: 2px;
-      box-shadow: 0 2px 24px var(--shadow), 0 1px 4px var(--shadow);
-      padding: 64px 56px;
-      margin-bottom: 2px;
-    }
-
-    @media (max-width: 560px) {
-      .card { padding: 44px 28px; }
-    }
-
-    /* Sections */
-    .section {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Stanza */
-    .stanza {
-      text-align: center;
-      padding: 28px 0;
-    }
-
-    .stanza p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(19px, 2.8vw, 23px);
-      font-weight: 400;
-      line-height: 2.1;
-      color: var(--text);
-    }
-
-    .stanza p.soft {
-      font-style: italic;
-      font-weight: 300;
-      color: var(--muted);
-      font-size: clamp(17px, 2.4vw, 21px);
-    }
-
-    .stanza p.mark {
-      color: var(--accent);
-      font-style: italic;
-      font-size: clamp(20px, 2.8vw, 24px);
-    }
-
-    /* Divider */
-    .divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      padding: 44px 0;
-    }
-
-    .div-line {
-      width: 64px;
-      height: 1px;
-      background: var(--divider);
-    }
-
-    .div-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.45;
-    }
-
-    /* Acrostic — justified, plain, letters same weight as body */
-    .acrostic-block {
-      padding: 28px 0;
-    }
-
-    .acrostic-line {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(19px, 2.8vw, 23px);
-      font-weight: 400;
-      line-height: 2.1;
-      color: var(--text);
-      text-align: justify;
-      text-align-last: left;
-    }
-
-    /* NO special styling on the letter — completely plain */
-    .acrostic-line .l {
-      font-weight: 400;
-      color: var(--text);
-    }
-
-    /* Gaps */
-    .gap { display: block; height: 32px; }
-    .gap-sm { display: block; height: 16px; }
-
-    /* Signature */
-    .signature {
-      text-align: center;
-      padding-top: 80px;
-      opacity: 0;
-      animation: fadeUp 1.6s ease forwards;
-      animation-delay: 0.2s;
-    }
-
-    .sig-rule {
-      width: 60px;
-      height: 1px;
-      background: var(--divider);
-      margin: 0 auto 36px;
-    }
-
-    .sig-letter {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 68px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .sig-sub {
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0.5;
-      margin-top: 18px;
-    }
-
-    /* Scroll hint */
-    .scroll-hint {
-      position: fixed;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 10;
-      transition: opacity 0.6s ease;
-    }
-
-    .scroll-hint.hidden { opacity: 0; pointer-events: none; }
-
-    .scroll-hint span {
-      display: block;
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0.5;
-      margin-bottom: 10px;
-    }
-
-    .scroll-needle {
-      width: 1px;
-      height: 44px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      margin: 0 auto;
-      animation: needle 2s ease-in-out infinite;
-    }
-
-    @keyframes needle {
-      0%, 100% { opacity: 0.2; transform: scaleY(0.7); transform-origin: top; }
-      50% { opacity: 0.6; transform: scaleY(1); transform-origin: top; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 480px) {
-      .page { padding: 40px 20px 100px; }
-      .header { padding: 60px 0 70px; }
-    }
-  </style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #080808;
+    color: #e8e0d5;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.15rem;
+    line-height: 2;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 12vh 2rem 20vh;
+  }
+  .block {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    margin-bottom: 4rem;
+  }
+  .block.visible { opacity: 1; transform: translateY(0); }
+  .line {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    display: block;
+    min-height: 1.2em;
+  }
+  .line.visible { opacity: 1; transform: translateY(0); }
+  .title {
+    font-size: 1.05rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #a09080;
+    margin-bottom: 10vh;
+    opacity: 0;
+    animation: fadeTitle 3s ease forwards;
+    animation-delay: 0.5s;
+    text-align: center;
+  }
+  @keyframes fadeTitle {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  p { margin-bottom: 0.3rem; }
+  em { font-style: italic; color: #c8b8a8; }
+  .divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #a09080, transparent);
+    margin: 3rem auto;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .divider.visible { opacity: 1; }
+  .signature {
+    font-style: italic;
+    color: #907860;
+    font-size: 1rem;
+    margin-top: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .end-space { height: 20vh; }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: #080808; }
+  ::-webkit-scrollbar-thumb { background: #302820; border-radius: 2px; }
+</style>
 </head>
 <body>
 
-  <div class="particles" id="particles"></div>
+<canvas id="particles"></canvas>
 
-  <div class="scroll-hint" id="scrollHint">
-    <span>read</span>
-    <div class="scroll-needle"></div>
+<div class="wrapper">
+
+  <div class="title">Something I Never Said</div>
+
+  <div class="block">
+    <p class="line">Some stories don't begin with a conversation.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Some begin before you understand anything at all.</p>
+    <p class="line">Some begin before you're even born</p>
+    <p class="line">in the quiet friendship of two people who refused to let life separate them,</p>
+    <p class="line">in a dream someone had and told out loud,</p>
+    <p class="line">in connections that formed before anyone thought to question them.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Even before I arrived in this world,</p>
+    <p class="line">something was already being written.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">I just didn't know yet</p>
+    <p class="line">that I was one of the characters.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">And neither did you.</p>
   </div>
 
-  <div class="page">
+  <div class="divider"></div>
 
-    <div class="header">
-      <div class="header-eyebrow">a story that started before words</div>
-      <h1 class="header-title"> Before <em>Words</em> </h1>
-      <div class="header-rule"></div>
-    </div>
-
-    <div class="card">
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">Some stories don't begin with a conversation.</p>
-          <p class="soft">Some begin before you understand anything at all.</p>
-          <p class="soft">Some begin before you're even born.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p>There were two families.</p>
-          <p>Bound not by accident </p>
-          <p>but by something older than memory.</p>
-          <p>A friendship that survived distance.</p>
-          <p>A connection that quietly stitched itself</p>
-          <p>through years, through prayers,</p>
-          <p>through dreams that were told out loud</p>
-          <p>and then gently handed to God.</p>
-          <span class="gap-sm"></span>
-          <p>Even before I arrived in this world,</p>
-          <p>something was already being written.</p>
-          <p>I just didn't know yet</p>
-          <p>that I was one of the characters.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">I saw her sometimes.</p>
-          <p class="soft">The way you notice a star </p>
-          <p class="soft">not because you went looking,</p>
-          <p class="soft">but because it was simply there.</p>
-          <p class="soft">Always there.</p>
-          <span class="gap-sm"></span>
-          <p>We never really spoke.</p>
-          <p>We didn't need to, back then.</p>
-          <p>She was just someone who existed</p>
-          <p>at the edges of my life</p>
-          <p>like a song playing in another room</p>
-          <p>that you never fully hear,</p>
-          <p>but somehow never forget.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">Then one day, I found something.</p>
-          <span class="gap-sm"></span>
-          <p>A photograph.</p>
-          <p>Old. Small. Almost forgotten</p>
-          <p>between the pages of a life</p>
-          <p>that had kept moving without explaining itself.</p>
-          <span class="gap-sm"></span>
-          <p>When I asked about it</p>
-          <p>the answer arrived quietly.</p>
-          <p>No drama. No thunder.</p>
-          <p>Just a truth</p>
-          <p>that rearranged something inside me</p>
-          <p>so gently</p>
-          <p>I didn't even notice</p>
-          <p>until it was already done.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">And then there was a day</p>
-          <p class="soft">just an ordinary afternoon </p>
-          <p class="soft">when someone said something casual.</p>
-          <p class="soft">Unaware of its own weight.</p>
-          <p class="soft">Unaware of what it would become.</p>
-          <span class="gap-sm"></span>
-          <p>A sentence.</p>
-          <p>Not a love letter.</p>
-          <p>Not a confession.</p>
-          <p>Just words </p>
-          <p>that landed somewhere in me</p>
-          <p>like a seed lands in soil.</p>
-          <span class="gap-sm"></span>
-          <p>Silent.</p>
-          <p>Still.</p>
-          <p>But already becoming something.</p>
-          <span class="gap-sm"></span>
-          <p>From that day,</p>
-          <p>I started seeing differently.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <!-- Acrostic — plain, justified, no highlights -->
-      <div class="section">
-        <div class="acrostic-block">
-          <span class="acrostic-line"><span class="l">M</span>oments passed between us like seasons </span>
-          <span class="acrostic-line"><span class="l">E</span>ach one small, each one unspoken,</span>
-          <span class="acrostic-line"><span class="l">R</span>emembered only by me, perhaps.</span>
-          <span class="acrostic-line"><span class="l">L</span>eft unsaid, the way real feelings often are.</span>
-          <span class="acrostic-line"><span class="l">I</span>n every room we ever shared,</span>
-          <span class="acrostic-line"><span class="l">N</span>earest to each other, yet furthest apart.</span>
-          <span class="acrostic-line"><span class="l">S</span>ilence was the only language between us </span>
-          <span class="acrostic-line"><span class="l">H</span>eld carefully, like something fragile.</span>
-          <span class="acrostic-line"><span class="l">A</span>nd still I kept returning to the edges of it,</span>
-          <span class="acrostic-line"><span class="l">R</span>eturning to moments no one else even noticed.</span>
-          <span class="acrostic-line"><span class="l">I</span>t was never a choice, really.</span>
-          <span class="acrostic-line"><span class="l">N</span>othing about this ever was.</span>
-          <span class="acrostic-line"><span class="l">A</span>ll I know is — I couldn't look away.</span>
-          <span class="gap"></span>
-          <span class="acrostic-line"><span class="l">D</span>istance came, as it always does.</span>
-          <span class="acrostic-line"><span class="l">A</span>nd life moved forward without asking permission.</span>
-          <span class="acrostic-line"><span class="l">R</span>ooms emptied. Seasons changed. Time kept going.</span>
-          <span class="acrostic-line"><span class="l">A</span>nd yet — something in me stayed still.</span>
-          <span class="acrostic-line"><span class="l">T</span>hat something had no name.</span>
-          <span class="acrostic-line"><span class="l">H</span>ad no explanation.</span>
-          <span class="acrostic-line"><span class="l">I</span>t had only ever had a face.</span>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">She went away to build her.</p>
-          <p class="soft">I stayed and tried to build mine.</p>
-          <span class="gap-sm"></span>
-          <p>We existed in the same world</p>
-          <p>but rarely in the same room.</p>
-          <p>And when we were </p>
-          <span class="gap-sm"></span>
-          <p>I spoke to everyone around her.</p>
-          <p>She spoke to everyone around me.</p>
-          <span class="gap-sm"></span>
-          <p>And somehow, in all that noise,</p>
-          <p>in all that closeness</p>
-          <p>we remained the only two people</p>
-          <p>who never really spoke to each other.</p>
-          <span class="gap-sm"></span>
-          <p class="soft">Maybe we didn't need words yet.</p>
-          <p class="soft">Maybe the story wasn't ready for that chapter.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">Then came an evening.</p>
-          <p class="soft">At the turn of a year.</p>
-          <span class="gap-sm"></span>
-          <p>She said two words</p>
-          <p>without looking at me.</p>
-          <span class="gap-sm"></span>
-          <p>And then —</p>
-          <p>just before leaving —</p>
-          <p>she looked.</p>
-          <span class="gap-sm"></span>
-          <p class="mark">Just once.</p>
-          <span class="gap-sm"></span>
-          <p>I don't know if she knows</p>
-          <p>what that one look did</p>
-          <p>to someone who had been</p>
-          <p>quietly collecting</p>
-          <p>every small moment</p>
-          <p>she never noticed she was giving.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">I haven't said anything.</p>
-          <p class="soft">Not directly.</p>
-          <p class="soft">Not yet.</p>
-          <span class="gap-sm"></span>
-          <p>But somewhere in a photograph</p>
-          <p>turned to art,</p>
-          <p>two people rendered in colour and silence —</p>
-          <span class="gap-sm"></span>
-          <p>somewhere in these words,</p>
-          <p>in these lines —</p>
-          <span class="gap-sm"></span>
-          <p class="mark">I have been saying it.</p>
-          <span class="gap-sm"></span>
-          <p>The only way I knew how.</p>
-          <span class="gap-sm"></span>
-          <p>Quietly.</p>
-          <p>Patiently.</p>
-          <p>The way you wait for someone</p>
-          <p>when you believe</p>
-          <p>the story was written</p>
-          <p>long before either of you</p>
-          <p>arrived to read it.</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-line"></div></div>
-      </div>
-
-      <div class="section">
-        <div class="stanza">
-          <p class="soft">Maybe she never finds this.</p>
-          <span class="gap-sm"></span>
-          <p class="soft">Maybe she does.</p>
-          <span class="gap-sm"></span>
-          <p>Maybe she reads this and feels nothing.</p>
-          <p>And maybe that's okay too</p>
-          <p>because some things deserve to be said</p>
-          <p>even when you don't know</p>
-          <p>if anyone is listening.</p>
-          <span class="gap-sm"></span>
-          <p>But maybe —</p>
-          <span class="gap-sm"></span>
-          <p>Maybe she reads this</p>
-          <p>and something stirs.</p>
-          <p>Something quiet.</p>
-          <p>Something she can't quite name.</p>
-          <span class="gap-sm"></span>
-          <p>Maybe she reads this and remembers</p>
-          <p>that some stories</p>
-          <p>don't start with a conversation.</p>
-          <span class="gap-sm"></span>
-          <p>They start before that.</p>
-          <p>Long before that.</p>
-          <span class="gap-sm"></span>
-          <p>And maybe —</p>
-          <p>just maybe —</p>
-          <span class="gap-sm"></span>
-          <p class="mark">they're still being written.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Signature -->
-    <div class="signature">
-      <div class="sig-rule"></div>
-      <div class="sig-letter">D</div>
-      <div class="sig-sub">before words</div>
-    </div>
-
+  <div class="block">
+    <p class="line">I saw her sometimes.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">The way you notice a star ✨</p>
+    <p class="line">not because you went looking,</p>
+    <p class="line">but because it was simply there.</p>
+    <p class="line">Always there.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">At the edges of my life.</p>
+    <p class="line">In rooms full of people and noise</p>
+    <p class="line">and ordinary afternoons</p>
+    <p class="line">that left no marks on any calendar.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">She was like a song playing in another room</p>
+    <p class="line">one you never fully hear,</p>
+    <p class="line">but somehow</p>
+    <p class="line">never</p>
+    <p class="line">forget.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">We never really spoke.</p>
+    <p class="line">We didn't need to, back then.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">She existed at the edges of my world</p>
+    <p class="line">and I existed somewhere in hers</p>
+    <p class="line">and neither of us understood yet</p>
+    <p class="line">what that would eventually mean.</p>
   </div>
 
-  <script>
-    // Floating particles
-    const pc = document.getElementById('particles');
-    for (let i = 0; i < 18; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const size = Math.random() * 4 + 2;
-      p.style.cssText = `
-        width:${size}px;height:${size}px;
-        left:${Math.random()*100}%;
-        --dur:${Math.random()*16+10}s;
-        --delay:${Math.random()*12}s;
-        --max-op:${Math.random()*0.07+0.03};
-      `;
-      pc.appendChild(p);
-    }
+  <div class="divider"></div>
 
-    // Scroll reveal
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.section').forEach(s => observer.observe(s));
+  <div class="block">
+    <p class="line">Then one day, I found something.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">A photograph.</p>
+    <p class="line">Old. Small.</p>
+    <p class="line">Almost forgotten</p>
+    <p class="line">tucked between the pages of a life</p>
+    <p class="line">that had kept moving without explaining itself.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Just a photo of a girl.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">When I found out who it was</p>
+    <p class="line">the answer arrived quietly.</p>
+    <p class="line">No drama. No thunder.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Just a truth</p>
+    <p class="line">that rearranged something inside me</p>
+    <p class="line">so gently</p>
+    <p class="line">I didn't even notice</p>
+    <p class="line">until it was already done.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">It wasn't love yet.</p>
+    <p class="line">It wasn't anything with a name.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">It was more like</p>
+    <p class="line">recognition.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Like something deep and wordless went</p>
+    <p class="line">&nbsp;</p>
+    <p class="line"><em>oh.</em></p>
+    <p class="line"><em>it's you.</em></p>
+  </div>
 
-    // Scroll hint
-    const hint = document.getElementById('scrollHint');
-    window.addEventListener('scroll', () => {
-      hint.classList.toggle('hidden', window.scrollY > 80);
-    }, { passive: true });
-  </script>
-  <script>
-  // Open time
-  const openTime = new Date().toLocaleString();
+  <div class="divider"></div>
 
-  if (typeof gtag === "function") {
-    gtag('event', 'open_time', {
-      event_category: 'engagement',
-      event_label: openTime
-    });
+  <div class="block">
+    <p class="line">Then there was a day</p>
+    <p class="line">just lunch.</p>
+    <p class="line">Just family.</p>
+    <p class="line">Just the kind of afternoon</p>
+    <p class="line">that disappears without a trace.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Someone said something casual.</p>
+    <p class="line">A sentence.</p>
+    <p class="line">Not a love letter.</p>
+    <p class="line">Not a confession.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Just words</p>
+    <p class="line">that landed somewhere inside me</p>
+    <p class="line">the way a seed lands in soil.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Silent.</p>
+    <p class="line">Still.</p>
+    <p class="line">But already becoming something.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">I didn't choose it.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">That's what nobody tells you</p>
+    <p class="line">about feelings like this</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">you don't choose them.</p>
+    <p class="line">They choose you.</p>
+    <p class="line">And by the time you realize what's happened</p>
+    <p class="line">it's already too late to go back.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="block acrostic-block">
+    <p class="line">Moments passed between us like seasons</p>
+    <p class="line">Each one small, each one unspoken,</p>
+    <p class="line">Remembered only by me, perhaps.</p>
+    <p class="line">Left unsaid, the way real feelings often are.</p>
+    <p class="line">In every room we ever shared,</p>
+    <p class="line">Nearest to each other, yet furthest apart.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Silence was the only language between us</p>
+    <p class="line">Held carefully, like something fragile.</p>
+    <p class="line">And still I kept returning to the edges of it,</p>
+    <p class="line">Returning to moments no one else even noticed.</p>
+    <p class="line">It was never a choice, really.</p>
+    <p class="line">Nothing about this ever was.</p>
+    <p class="line">All I know is — I couldn't look away.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Distance came, as it always does.</p>
+    <p class="line">And life moved forward without asking permission.</p>
+    <p class="line">Rooms emptied. Seasons changed. Time kept going.</p>
+    <p class="line">And yet something in me stayed still.</p>
+    <p class="line">That something had no name.</p>
+    <p class="line">Had no explanation.</p>
+    <p class="line">It had only ever had a face.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="block">
+    <p class="line">She went far.</p>
+    <p class="line">Studies. Life. Her own world unfolding</p>
+    <p class="line">in a place I wasn't part of.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">And I stayed here</p>
+    <p class="line">carrying something I hadn't asked for</p>
+    <p class="line">and couldn't put down.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">People think distance is measured in kilometers.</p>
+    <p class="line">It isn't.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">The real distance is this</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">her, living fully.</p>
+    <p class="line">Building herself into someone remarkable.</p>
+    <p class="line">Someone I only ever see in fragments</p>
+    <p class="line">and somehow still</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">feel everything about.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">That's the distance.</p>
+    <p class="line">Not geography.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Just the gap between</p>
+    <p class="line">knowing someone</p>
+    <p class="line">and being known by them.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="block">
+    <p class="line">I had ways to reach her.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">A number saved.</p>
+    <p class="line">A profile I'd opened and quietly closed</p>
+    <p class="line">more times than I'd like to admit.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">For a long time, I didn't use them.</p>
+    <p class="line">Not because I didn't want to.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">But because some feelings take time</p>
+    <p class="line">to become brave enough.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">What if it comes across wrong?</p>
+    <p class="line">What if she doesn't understand?</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">What if understanding is worse</p>
+    <p class="line">what if she understands completely</p>
+    <p class="line">and still feels nothing?</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">So I held it.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">The way you hold something</p>
+    <p class="line">you're scared to break</p>
+    <p class="line">and scared to keep</p>
+    <p class="line">at the same time.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="block">
+    <p class="line">She's living her life right now.</p>
+    <p class="line">Fully. Completely.</p>
+    <p class="line">In ways I'm not part of.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">And that's okay.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">That's one of the things I've slowly learned</p>
+    <p class="line">about whatever this is</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">it doesn't demand anything.</p>
+    <p class="line">It doesn't ask to be seen.</p>
+    <p class="line">It doesn't need to be returned to be real.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">It just is.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">The way some things just are.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Quietly.</p>
+    <p class="line">Constantly.</p>
+    <p class="line">Without asking permission.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="block">
+    <p class="line">Maybe she never finds this.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Maybe she does.</p>
+    <p class="line">Maybe she reads it and feels nothing</p>
+    <p class="line">scrolls past it</p>
+    <p class="line">the way we scroll past</p>
+    <p class="line">most things that were meant for us.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">And maybe that's okay too.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Because some things deserve to be said</p>
+    <p class="line">even when you don't know</p>
+    <p class="line">if anyone is listening.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">But maybe </p>
+    <p class="line">&nbsp;</p>
+    <p class="line">maybe she reads this</p>
+    <p class="line">and something stirs.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Something quiet.</p>
+    <p class="line">Something without a name yet.</p>
+    <p class="line">Something she can't stop thinking about</p>
+    <p class="line">even after she puts her phone down.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Maybe she reads this and realizes</p>
+    <p class="line">that somewhere,</p>
+    <p class="line">without even knowing,</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">she has been someone's</p>
+    <p class="line">quiet reason.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Someone's most remembered</p>
+    <p class="line">ordinary moment.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">Someone's everything</p>
+    <p class="line">disguised as nothing.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="block">
+    <p class="line">Some stories don't start with a conversation.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">And some —</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">don't end with one either.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line">They just continue.</p>
+    <p class="line">Quietly.</p>
+    <p class="line">In the spaces between words.</p>
+    <p class="line">In small moments nobody else noticed.</p>
+    <p class="line">In a goodbye that meant more than goodbye.</p>
+    <p class="line">&nbsp;</p>
+    <p class="line"><em>Still being written.</em></p>
+    <p class="line">&nbsp;</p>
+    <p class="line"><em class="signature">— Someone you might already know.</em></p>
+  </div>
+
+  <div class="end-space"></div>
+</div>
+
+<script>
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function Particle() {
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.r  = Math.random() * 1.2 + 0.3;
+    this.dx = (Math.random() - 0.5) * 0.15;
+    this.dy = (Math.random() - 0.5) * 0.15;
+    this.a  = Math.random() * 0.35 + 0.05;
   }
 
-  // Read complete
-  let done = false;
+  for (let i = 0; i < 90; i++) particles.push(new Particle());
 
-  window.addEventListener('scroll', () => {
-    const pos = window.scrollY + window.innerHeight;
-    const height = document.documentElement.scrollHeight;
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,185,165,${p.a})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > W) p.dx *= -1;
+      if (p.y < 0 || p.y > H) p.dy *= -1;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
 
-    if (!done && pos > height * 0.8) {
-      done = true;
+  const blocks   = document.querySelectorAll('.block');
+  const dividers = document.querySelectorAll('.divider');
 
-      const readTime = new Date().toLocaleString();
-
-      if (typeof gtag === "function") {
-        gtag('event', 'read_complete', {
-          event_category: 'engagement',
-          event_label: readTime
-        });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        if (el.classList.contains('block')) {
+          el.classList.add('visible');
+          const blockLines = el.querySelectorAll('.line');
+          blockLines.forEach((line, i) => {
+            setTimeout(() => line.classList.add('visible'), i * 80);
+          });
+        } else {
+          el.classList.add('visible');
+        }
+        observer.unobserve(el);
       }
-    }
-  });
+    });
+  }, { threshold: 0.08 });
+
+  blocks.forEach(b   => observer.observe(b));
+  dividers.forEach(d => observer.observe(d));
 </script>
 </body>
 </html>
