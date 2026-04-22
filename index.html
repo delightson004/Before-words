@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Just Her ♡</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Written Before We Met</title>
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LEKJ0T5LPS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,185 +13,345 @@
   gtag('js', new Date());
   gtag('config', 'G-LEKJ0T5LPS');
 </script>
+
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wf2abatb14");
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "wf2abatb14");
 </script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background-color: #080808;
-    color: #e8e0d5;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 1.15rem;
-    line-height: 2;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  #particles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .wrapper {
-    position: relative;
-    z-index: 1;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 12vh 2rem 20vh;
-  }
-  .block {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    margin-bottom: 4rem;
-  }
-  .block.visible { opacity: 1; transform: translateY(0); }
-  .line {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-    display: block;
-    min-height: 1.2em;
-  }
-  .line.visible { opacity: 1; transform: translateY(0); }
-  .title {
-    font-size: 1.05rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #a09080;
-    margin-bottom: 10vh;
-    opacity: 0;
-    animation: fadeTitle 3s ease forwards;
-    animation-delay: 0.5s;
-    text-align: center;
-  }
-  @keyframes fadeTitle {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  p { margin-bottom: 0.3rem; }
-  em { font-style: italic; color: #c8b8a8; }
-  .signature {
-    font-style: italic;
-    color: #907860;
-    font-size: 1rem;
-    margin-top: 2rem;
-    letter-spacing: 0.05em;
-  }
-  .end-space { height: 20vh; }
-  ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: #080808; }
-  ::-webkit-scrollbar-thumb { background: #302820; border-radius: 2px; }
-  .acrostic::first-letter {
-    color: #c8a97e;
-    text-shadow: 0 0 8px rgba(200, 169, 126, 0.6), 0 0 16px rgba(200, 169, 126, 0.2);
-  }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+:root {
+  --rose:#c47a8a;
+  --gold:#c9a96e;
+  --gold-dim:rgba(201,169,110,.3);
+  --dark:#0e0a06;
+  --text:#ede0cc;
+  --muted:#9e7e5e;
+  --dim:rgba(237,224,204,.4);
+}
+
+html,body { width:100%; height:100%; overflow:hidden; background:var(--dark); font-family:'Cormorant Garamond',serif; touch-action:pan-x pan-y; }
+
+/* grain */
+body::after {
+  content:''; position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9000; opacity:.45;
+}
+
+/* cursor */
+@media(pointer:fine){
+  *{cursor:none!important;}
+  #cd{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+  #cr{position:fixed;width:26px;height:26px;border:1px solid var(--gold-dim);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease;}
+}
+
+/* particles */
+#ptc{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.p{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:pu linear infinite;}
+@keyframes pu{0%{transform:translateY(105vh);opacity:0;}8%{opacity:.45;}92%{opacity:.1;}100%{transform:translateY(-10vh) translateX(18px);opacity:0;}}
+
+/* overlay */
+#ovl{position:fixed;inset:0;background:var(--dark);z-index:8000;opacity:0;pointer-events:none;transition:opacity .5s ease;}
+#ovl.on{opacity:1;pointer-events:all;}
+
+/* story */
+#story{position:fixed;inset:0;z-index:10;}
+
+.sc{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:60px 40px 110px;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+  overflow:hidden;
+}
+.sc.active{opacity:1;pointer-events:all;}
+
+/* backgrounds — each subtly different */
+.b0{background:radial-gradient(ellipse at 50% 65%,#160a2c 0%,#07040f 55%,#020107 100%);}
+.b1{background:radial-gradient(ellipse at 45% 40%,#110716 0%,#07040e 55%,#030208 100%);}
+.b2{background:radial-gradient(ellipse at 55% 70%,#190d06 0%,#0d0703 55%,#050200 100%);}
+.b3{background:radial-gradient(ellipse at 40% 50%,#17100a 0%,#0d0803 55%,#040200 100%);}
+.b4{background:radial-gradient(ellipse at 60% 40%,#191106 0%,#0d0b04 55%,#040300 100%);}
+.b5{background:radial-gradient(ellipse at 50% 50%,#0d0f17 0%,#080910 55%,#030408 100%);}
+.b6{background:radial-gradient(ellipse at 30% 60%,#170e08 0%,#0d0803 55%,#040200 100%);}
+.b7{background:radial-gradient(ellipse at 55% 40%,#09140a 0%,#060d06 55%,#020402 100%);}
+.b8{background:radial-gradient(ellipse at 65% 50%,#190d0d 0%,#0f0808 55%,#050303 100%);}
+.b9{background:radial-gradient(ellipse at 50% 60%,#170d06 0%,#0d0a04 55%,#050200 100%);}
+.b10{background:radial-gradient(ellipse at 50% 50%,#0f080d 0%,#090608 55%,#040204 100%);}
+.b11{background:radial-gradient(ellipse at 50% 50%,#11080b 0%,#0a0608 55%,#040204 100%);}
+
+/* stars */
+.stars{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.str{position:absolute;background:#fff;border-radius:50%;animation:twk ease-in-out infinite;}
+@keyframes twk{0%,100%{opacity:.1;transform:scale(1);}50%{opacity:.75;transform:scale(1.3);}}
+
+/* content wrapper */
+.ct{position:relative;z-index:5;max-width:620px;width:100%;text-align:center;}
+
+/* eyebrow */
+.ey{font-family:'Cinzel',serif;font-size:clamp(.48rem,1.6vw,.58rem);letter-spacing:7px;color:var(--gold);text-transform:uppercase;opacity:0;animation:fu 1s ease .2s forwards;display:block;margin-bottom:16px;}
+
+/* hero */
+h1.ht{font-family:'Cinzel',serif;font-size:clamp(2.5rem,8.5vw,5.2rem);color:var(--text);font-weight:400;line-height:1.13;letter-spacing:2px;opacity:0;animation:fu 1.3s ease .5s forwards;text-shadow:0 0 80px rgba(201,169,110,.12);}
+h1.ht em{font-style:italic;color:var(--rose);}
+
+/* section title */
+h2.st{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--gold);font-weight:400;letter-spacing:4px;opacity:0;animation:fu 1s ease .3s forwards;margin-bottom:24px;}
+
+/* hero sub */
+.hs{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,2.3vw,1.3rem);font-style:italic;color:var(--muted);line-height:1.95;opacity:0;animation:fu 1s ease .95s forwards;margin:16px 0 34px;}
+
+/* body */
+.bt{font-family:'EB Garamond',serif;font-size:clamp(.9rem,1.9vw,1.1rem);color:var(--text);line-height:2.05;opacity:0;animation:fu 1s ease .5s forwards;margin-bottom:12px;}
+.bt em{color:var(--gold);font-style:italic;}
+.bt:nth-of-type(2){animation-delay:.7s;}
+.bt:nth-of-type(3){animation-delay:.9s;}
+
+/* poetic */
+.po{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,2.1vw,1.25rem);font-style:italic;color:var(--muted);line-height:2.1;opacity:0;animation:fu 1s ease 1s forwards;margin-top:16px;}
+.po em{color:var(--rose);}
+
+/* pull quote */
+.pq{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.4vw,1.5rem);font-style:italic;color:var(--rose);line-height:1.8;opacity:0;animation:fu 1s ease 1.05s forwards;margin:20px 0;padding:0 0 0 20px;border-left:1px solid rgba(196,122,138,.35);text-align:left;}
+
+/* ornament */
+.od{display:flex;align-items:center;justify-content:center;gap:13px;margin:20px 0;opacity:0;animation:fi 1s ease 1s forwards;}
+.od span{display:block;height:1px;width:52px;}
+.od span:first-child{background:linear-gradient(to right,transparent,var(--gold-dim));}
+.od span:last-child{background:linear-gradient(to left,transparent,var(--gold-dim));}
+.od i{width:4px;height:4px;background:var(--gold);transform:rotate(45deg);display:block;flex-shrink:0;font-style:normal;opacity:.65;}
+
+/* deco line */
+.dl{width:1px;margin:0 auto;background:linear-gradient(to bottom,transparent,var(--gold-dim),transparent);animation:lg 1.5s ease forwards;}
+@keyframes lg{from{height:0;opacity:0;}to{height:46px;opacity:1;}}
+
+/* begin button */
+.btn-s{font-family:'Cinzel',serif;font-size:clamp(.58rem,1.7vw,.7rem);letter-spacing:6px;color:var(--gold);border:1px solid var(--gold-dim);background:transparent;padding:14px 42px;cursor:pointer;opacity:0;animation:fu 1s ease 1.5s forwards,glw 3s ease 2.5s infinite;transition:all .4s ease;text-transform:uppercase;position:relative;overflow:hidden;display:inline-block;}
+.btn-s::before{content:'';position:absolute;inset:0;background:rgba(201,169,110,.05);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.btn-s:hover::before,.btn-s:active::before{transform:scaleX(1);}
+.btn-s:hover{border-color:rgba(201,169,110,.65);letter-spacing:8px;}
+@keyframes glw{0%,100%{box-shadow:0 0 0 0 rgba(201,169,110,0);}50%{box-shadow:0 0 16px 3px rgba(201,169,110,.1);}}
+
+/* swipe hint */
+#nav{position:fixed;bottom:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;z-index:7000;opacity:0;transition:opacity .6s ease;pointer-events:none;}
+#nav.show{opacity:1;}
+#pgl{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:5px;color:rgba(201,169,110,.45);text-transform:uppercase;text-align:center;user-select:none;}
+@keyframes breathe{0%,100%{opacity:.45;}50%{opacity:.85;}}
+#nav.show #pgl{animation:breathe 3s ease infinite;}
+.nb{display:none;}
+
+/* dots */
+#dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:7000;}
+.dot{width:3px;height:3px;border-radius:50%;background:rgba(201,169,110,.22);transition:all .4s ease;}
+.dot.on{background:var(--gold);box-shadow:0 0 5px rgba(201,169,110,.45);transform:scale(1.7);}
+@media(max-width:600px){#dots{display:none;}}
+
+/* zeigarnik whisper */
+.zw{font-family:'Cormorant Garamond',serif;font-size:clamp(.75rem,1.6vw,.88rem);font-style:italic;color:rgba(201,169,110,.28);letter-spacing:2px;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:6000;white-space:nowrap;opacity:0;animation:fi 1s ease 2.4s forwards;pointer-events:none;}
+
+/* ── ACROSTIC POEM ── */
+.pw{text-align:left;opacity:0;animation:fu 1s ease .4s forwards;max-width:510px;margin:0 auto;}
+.pl{font-family:'EB Garamond',serif;font-size:clamp(.88rem,1.85vw,1.05rem);color:var(--text);line-height:1.92;display:block;}
+/* first letter — warm gold, slightly italic, NOT bold, NOT large. Discoverable, not announced */
+.fl{color:#c9a96e;opacity:.7;font-style:italic;}
+.ps{display:block;height:16px;}
+
+/* ── LETTER ── */
+.ltr{background:rgba(245,237,224,.025);border:1px solid rgba(201,169,110,.11);padding:34px 38px;text-align:left;position:relative;max-width:530px;margin:0 auto;opacity:0;animation:fu 1s ease .5s forwards;}
+.ltr::before{content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;border:1px solid rgba(201,169,110,.05);pointer-events:none;}
+.lt{font-family:'EB Garamond',serif;font-size:clamp(.88rem,1.75vw,1.02rem);color:var(--text);line-height:2.1;margin-bottom:13px;display:block;}
+.lt em{color:var(--rose);font-style:italic;}
+.ls{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--gold);margin-top:20px;display:block;}
+
+/* ── FINAL ── */
+.fn{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4.5vw,2.8rem);color:var(--rose);opacity:0;animation:fu 1.5s ease .4s forwards;text-shadow:0 0 45px rgba(196,122,138,.22);margin-bottom:8px;}
+.ff{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,2.1vw,1.25rem);font-style:italic;color:var(--muted);line-height:2.1;opacity:0;animation:fu 1s ease 1.1s forwards;margin:16px 0;}
+.fc{font-family:'EB Garamond',serif;font-size:clamp(.82rem,1.55vw,.97rem);color:var(--dim);font-style:italic;opacity:0;animation:fu 1s ease 2s forwards;margin-top:32px;line-height:1.95;}
+
+/* animations */
+@keyframes fu{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}
+
+/* mobile */
+@media(max-width:600px){
+  .sc{padding:48px 24px 108px;}
+  .ltr{padding:22px 20px;}
+  h1.ht{font-size:clamp(2.1rem,9.5vw,3rem);}
+}
 </style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
+<div id="cd"></div><div id="cr"></div>
+<div id="ovl"></div>
+<div id="ptc"></div>
+<div id="dots"></div>
 
-<div class="wrapper">
-
-  <div class="title">Just Her ♡</div>
-
-  <div class="block">
-    <p class="line acrostic">Moments passed between us like seasons</p>
-    <p class="line acrostic">Each one small, each one unspoken,</p>
-    <p class="line acrostic">Remembered only by me, perhaps.</p>
-    <p class="line acrostic">Left unsaid, the way real feelings often are.</p>
-    <p class="line acrostic">In every room we ever shared,</p>
-    <p class="line acrostic">Nearest to each other, yet furthest apart.</p>
-    <p class="line">&nbsp;</p>
-    <p class="line acrostic">Silence was the only language between us</p>
-    <p class="line acrostic">Held carefully, like something fragile.</p>
-    <p class="line acrostic">And still I kept returning to the edges of it,</p>
-    <p class="line acrostic">Returning to moments no one else even noticed.</p>
-    <p class="line acrostic">It was never a choice, really.</p>
-    <p class="line acrostic">Nothing about this ever was.</p>
-    <p class="line acrostic">All I know is — I couldn't look away.</p>
-    <p class="line">&nbsp;</p>
-    <p class="line acrostic">Distance came, as it always does.</p>
-    <p class="line acrostic">And life moved forward without asking permission.</p>
-    <p class="line acrostic">Rooms emptied. Seasons changed. Time kept going.</p>
-    <p class="line acrostic">And yet — something in me stayed still.</p>
-    <p class="line acrostic">That something had no name.</p>
-    <p class="line acrostic">Had no explanation.</p>
-    <p class="line acrostic">It had only ever had a face.</p>
-    <p class="line">&nbsp;</p>
-    <p class="line"><em class="signature">— Someone you might already know.</em></p>
-  </div>
-
-  <div class="end-space"></div>
+<div id="nav">
+  <span id="pgl">swipe to navigate</span>
 </div>
 
-<script>
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
+<div id="story">
 
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
+<!-- ══ 0 · OPENING ══ -->
+<div class="sc b0 active" id="s0">
+  <div class="stars" id="st0"></div>
+  <div class="ct">
+    <span class="ey">A Story</span>
+    <div class="dl" style="height:42px;margin-bottom:18px;"></div>
+    <h1 class="ht">Written Before<br><em>We Met</em></h1>
+    <p class="hs">Some stories don't begin with a conversation.<br>Some begin before you understand anything at all.</p>
+    <button class="btn-s" onclick="go(1)">Begin</button>
+  </div>
+  <span class="zw">something is waiting at the end &nbsp;—</span>
+</div>
 
-  function Particle() {
-    this.x  = Math.random() * W;
-    this.y  = Math.random() * H;
-    this.r  = Math.random() * 1.2 + 0.3;
-    this.dx = (Math.random() - 0.5) * 0.15;
-    this.dy = (Math.random() - 0.5) * 0.15;
-    this.a  = Math.random() * 0.35 + 0.05;
-  }
+<!-- ══ 1 · BEFORE ══ -->
+<div class="sc b1" id="s1">
+  <div class="stars" id="st1"></div>
+  <div class="ct">
+    <span class="ey">I</span>
+    <h2 class="st">Before Either of Us Arrived</h2>
+    <p class="bt">Some begin before you're even born — in the quiet friendship of two people who refused to let life separate them, in a dream someone had and told out loud, in connections that formed before anyone thought to question them.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="bt">Even before I arrived in this world, <em>something was already being written.</em></p>
+    <p class="po">I just didn't know yet<br>that I was one of the characters.<br><br>And neither did you.</p>
+  </div>
+</div>
 
-  for (let i = 0; i < 90; i++) particles.push(new Particle());
+<!-- ══ 2 · TWO LIVES ══ -->
+<div class="sc b2" id="s2">
+  <div class="ct">
+    <span class="ey">II</span>
+    <h2 class="st">Always There</h2>
+    <p class="bt">I saw her sometimes. The way you notice a star ✦ not because you went looking, but because it was simply there. Always there.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="bt">At the edges of my life. In rooms full of people and noise and ordinary afternoons that left no marks on any calendar.</p>
+    <p class="po"><em>She was like a song playing in another room</em><br>one you never fully hear,<br>but somehow<br>never<br>forget.</p>
+  </div>
+</div>
 
-  function drawParticles() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(200,185,165,${p.a})`;
-      ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.x < 0 || p.x > W) p.dx *= -1;
-      if (p.y < 0 || p.y > H) p.dy *= -1;
-    });
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
+<!-- ══ 3 · THE PHOTO ══ -->
+<div class="sc b3" id="s3">
+  <div class="ct">
+    <span class="ey">III</span>
+    <h2 class="st">oh. &nbsp;&nbsp;it's you.</h2>
+    <p class="bt">Then one day, I found something. A photograph. Old. Small. Almost forgotten — tucked between the pages of a life that had kept moving without explaining itself.</p>
+    <p class="bt">Just a photo of a girl.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="bt">When I found out who it was, the answer arrived quietly. No drama. No thunder.</p>
+    <p class="pq">Just a truth that rearranged something inside me so gently, I didn't even notice until it was already done.</p>
+    <p class="po">It wasn't love yet.<br>It wasn't anything with a name.<br><br>It was more like<br><em>recognition.</em></p>
+  </div>
+</div>
 
-  const blocks = document.querySelectorAll('.block');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        el.classList.add('visible');
-        const blockLines = el.querySelectorAll('.line');
-        blockLines.forEach((line, i) => {
-          setTimeout(() => line.classList.add('visible'), i * 120);
-        });
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.08 });
+<!-- ══ 4 · THE MOMENT ══ -->
+<div class="sc b4" id="s4">
+  <div class="ct">
+    <span class="ey">IV</span>
+    <h2 class="st">They Choose You</h2>
+    <p class="bt">Then there was a day. Just an ordinary afternoon. Just the kind that disappears without a trace.</p>
+    <p class="bt">Someone said something casual. A sentence. Not a love letter. Not a confession.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="pq">Just words that landed somewhere inside me<br>the way a seed lands in soil.<br>Silent. Still. But already becoming something.</p>
+    <p class="po">I didn't choose it.<br>That's what nobody tells you about feelings like this, <br>you don't choose them.<br><em>They choose you.</em><br><br>And by the time you realize what's happened,<br>it's already too late to go back.</p>
+  </div>
+</div>
 
-  blocks.forEach(b => observer.observe(b));
-</script>
-</body>
-</html>
+<!-- ══ 5 · ACROSTIC ══ -->
+<div class="sc b5" id="s5">
+  <div class="stars" id="st5"></div>
+  <div class="ct">
+    <span class="ey">V</span>
+    <h2 class="st">Something Only You Would Know</h2>
+    <div class="pw">
+      <span class="pl"><span class="fl">M</span>oments passed between us like seasons</span>
+      <span class="pl"><span class="fl">E</span>ach one small, each one unspoken,</span>
+      <span class="pl"><span class="fl">R</span>emembered only by me, perhaps.</span>
+      <span class="pl"><span class="fl">L</span>eft unsaid, the way real feelings often are.</span>
+      <span class="pl"><span class="fl">I</span>n every room we ever shared,</span>
+      <span class="pl"><span class="fl">N</span>earest to each other, yet furthest apart.</span>
+      <span class="ps"></span>
+      <span class="pl"><span class="fl">S</span>ilence was the only language between us</span>
+      <span class="pl"><span class="fl">H</span>eld carefully, like something fragile.</span>
+      <span class="pl"><span class="fl">A</span>nd still I kept returning to the edges of it,</span>
+      <span class="pl"><span class="fl">R</span>eturning to moments no one else even noticed.</span>
+      <span class="pl"><span class="fl">I</span>t was never a choice, really.</span>
+      <span class="pl"><span class="fl">N</span>othing about this ever was.</span>
+      <span class="pl"><span class="fl">A</span>ll I know is, I couldn't look away.</span>
+      <span class="ps"></span>
+      <span class="pl"><span class="fl">D</span>istance came, as it always does.</span>
+      <span class="pl"><span class="fl">A</span>nd life moved forward without asking permission.</span>
+      <span class="pl"><span class="fl">R</span>ooms emptied. Seasons changed. Time kept going.</span>
+      <span class="pl"><span class="fl">A</span>nd yet something in me stayed still.</span>
+      <span class="pl"><span class="fl">T</span>hat something had no name.</span>
+      <span class="pl"><span class="fl">H</span>ad no explanation.</span>
+      <span class="pl"><span class="fl">I</span>t had only ever had a face.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 6 · SILENCE ══ -->
+<div class="sc b6" id="s6">
+  <div class="ct">
+    <span class="ey">VI</span>
+    <h2 class="st">The Distance That Wasn't Geography</h2>
+    <p class="bt">She went far. Her own world unfolding in a place I wasn't part of.</p>
+    <p class="bt">And I stayed here — carrying something I hadn't asked for and couldn't put down.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="pq">People think distance is measured in kilometres.<br>It isn't.<br><br>The real distance is this —<br>her, living fully.<br>And the gap between<br>knowing someone<br>and being known by them.</p>
+  </div>
+</div>
+
+<!-- ══ 7 · SMALL MOMENTS ══ -->
+<div class="sc b7" id="s7">
+  <div class="ct">
+    <span class="ey">VII</span>
+    <h2 class="st">Scared to Keep</h2>
+    <p class="bt">I had ways to reach her. A number saved. A profile I'd opened and quietly closed more times than I'd like to admit.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="bt">But some feelings take time to become brave enough.</p>
+    <p class="pq">What if she understands completely —<br>and still feels nothing?</p>
+    <p class="po">So I held it.<br>The way you hold something<br>you're scared to break<br><em>and scared to keep</em><br>at the same time.</p>
+  </div>
+</div>
+
+<!-- ══ 8 · THE TREE ══ -->
+<div class="sc b8" id="s8">
+  <div class="ct">
+    <span class="ey">VIII</span>
+    <h2 class="st">It Just Is</h2>
+    <p class="bt">She's living her life right now. Fully. Completely. In ways I'm not part of.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="bt">And that's okay. Because whatever this is, <em>it doesn't demand anything. It doesn't ask to be seen. It doesn't need to be returned to be real.</em></p>
+    <p class="po">It just is.<br>The way some things just are.<br><br>Quietly.<br>Constantly.<br>Without asking permission.</p>
+  </div>
+</div>
+
+<!-- ══ 9 · MAYBE ══ -->
+<div class="sc b9" id="s9">
+  <div class="ct">
+    <span class="ey">IX</span>
+    <h2 class="st">Maybe She Reads This</h2>
+    <p class="bt">Maybe she never finds this. Maybe she does. Maybe she reads it and feels nothing, scrolls past it the way we scroll past most things that were meant for us.</p>
+    <div class="od"><span></span><i></i><span></span></div>
+    <p class="pq">But maybe she reads this<br>and something stirs.<br>Something quiet.<br>Something she can't stop thinking about<br>even after she puts her phone down.</p>
+    <p class="po">Maybe she realizes<br>that somewhere, without even knowing,<br>she has been someone's <em>quiet reason.</em><br>Someone's most remembered ordinary moment.<br>Someone's everything disguised as nothing.</p>
+  </div>
+</div>
+
+<!-- ══ 10 · LETTER ══ -->
+<div class="sc b10" id="s10">
+  <div class="ct">
+    <span class="ey">X
