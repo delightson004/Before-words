@@ -146,6 +146,7 @@ h2.st{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--go
 /* swipe hint */
 #nav{position:fixed;bottom:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;z-index:7000;opacity:0;transition:opacity .6s ease;pointer-events:none;}
 #nav.show{opacity:1;}
+#nav.hide{opacity:0;pointer-events:none;}
 #pgl{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:5px;color:rgba(201,169,110,.45);text-transform:uppercase;text-align:center;user-select:none;}
 @keyframes breathe{0%,100%{opacity:.45;}50%{opacity:.85;}}
 #nav.show #pgl{animation:breathe 3s ease infinite;}
@@ -162,9 +163,10 @@ h2.st{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--go
 
 /* ── ACROSTIC POEM ── */
 .pw{text-align:left;opacity:0;animation:fu 1s ease .4s forwards;max-width:510px;margin:0 auto;}
-.pl{font-family:'EB Garamond',serif;font-size:clamp(.88rem,1.85vw,1.05rem);color:var(--text);line-height:1.92;display:block;}
-/* first letter — warm gold, slightly italic, NOT bold, NOT large. Discoverable, not announced */
-.fl{color:#c9a96e;opacity:.7;font-style:italic;}
+/* entire line is italic — first letter breaks that pattern by staying upright.
+   No color, no size difference. Same warmth, different posture. She has to find it. */
+.pl{font-family:'EB Garamond',serif;font-size:clamp(.88rem,1.85vw,1.05rem);color:var(--text);line-height:1.92;display:block;font-style:italic;}
+.fl{font-style:normal;color:inherit;}
 .ps{display:block;height:16px;}
 
 /* ── LETTER ── */
@@ -213,6 +215,7 @@ h2.st{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--go
     <h1 class="ht">Written Before<br><em>We Met</em></h1>
     <p class="hs">Some stories don't begin with a conversation.<br>Some begin before you understand anything at all.</p>
     <button class="btn-s" onclick="go(1)" ontouchend="event.preventDefault();go(1);">Begin</button>
+    <p style="font-family:'Cinzel',serif;font-size:clamp(.6rem,1.9vw,.75rem);letter-spacing:5px;color:rgba(201,169,110,.6);text-transform:uppercase;margin-top:22px;opacity:0;animation:fu 1s ease 2s forwards;">Swipe to Navigate</p>
   </div>
   <span class="zw">something is waiting at the end &nbsp;—</span>
 </div>
@@ -474,7 +477,16 @@ function go(idx){
     zoomScale=1;panX=0;panY=0;initPanX=0;initPanY=0;
     document.querySelectorAll('.ct').forEach(el=>{el.style.transform='';el.style.transition='';});
     updDots(cur);
-    if(cur>=1)navEl.classList.add('show'); else navEl.classList.remove('show');
+    // swipe hint: show on sections 1-3, fade permanently after that
+    if(cur>=1 && cur<=3){
+      navEl.classList.remove('hide');
+      navEl.classList.add('show');
+    } else if(cur>3){
+      navEl.classList.remove('show');
+      navEl.classList.add('hide');
+    } else {
+      navEl.classList.remove('show','hide');
+    }
     track(cur);
     ovl.classList.remove('on');
     setTimeout(()=>{busy=false;},620);
