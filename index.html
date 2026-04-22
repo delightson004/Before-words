@@ -39,7 +39,7 @@
   --dim:rgba(237,224,204,.4);
 }
 
-html,body { width:100%; height:100%; overflow:hidden; background:var(--dark); font-family:'Cormorant Garamond',serif; touch-action:none; }
+html,body { width:100%; height:100%; overflow:hidden; background:var(--dark); font-family:'Cormorant Garamond',serif; touch-action:pan-x pan-y; }
 
 /* grain */
 body::after {
@@ -212,7 +212,7 @@ h2.st{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--go
     <div class="dl" style="height:42px;margin-bottom:18px;"></div>
     <h1 class="ht">Written Before<br><em>We Met</em></h1>
     <p class="hs">Some stories don't begin with a conversation.<br>Some begin before you understand anything at all.</p>
-    <button class="btn-s" style="display:none;" onclick="go(1)" ontouchend="event.preventDefault();go(1);">Begin</button>
+    <button class="btn-s" onclick="go(1)" ontouchend="event.preventDefault();go(1);">Begin</button>
   </div>
   <span class="zw">something is waiting at the end &nbsp;—</span>
 </div>
@@ -352,4 +352,221 @@ h2.st{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--go
 </div>
 
 <!-- ══ 10 · LETTER ══ -->
-<div class="sc b10" id=
+<div class="sc b10" id="s10">
+  <div class="ct">
+    <span class="ey">X</span>
+    <h2 class="st">A Letter</h2>
+    <div class="ltr">
+      <span class="lt">If you're reading this… I think some part of you already knew this existed. The way you know certain things without being told.</span>
+      <span class="lt">I never found the words when you were near. Every time, they just disappeared. Not because I didn't care, <em>because I cared too much to risk getting it wrong.</em></span>
+      <span class="lt">I've carried this for a long time. In silence. In prayers. In the spaces between words when I was speaking to everyone around you, but couldn't say your name.</span>
+      <span class="lt">You are not someone I simply met. You are someone I was pointed toward, long before either of us had a say in it. And I've spent years watching from a careful distance, <em>quietly hoping the distance wouldn't always have to be so careful.</em></span>
+      <span class="lt">I don't need you to feel what I feel. I just needed you to know that what I feel is real. That it was never nothing. That you were never just someone passing through.</span>
+      <span class="lt"><em>It was always you. It was only ever you.</em></span>
+      <span class="ls">— Someone you might already know &nbsp;🌹</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 11 · CLOSING ══ -->
+<div class="sc b11" id="s11">
+  <div class="stars" id="st11"></div>
+  <div class="ct">
+    <div class="dl" style="height:42px;margin-bottom:26px;"></div>
+    <div class="fn">Still Being Written</div>
+    <p class="ff">
+      Some stories don't start with a conversation.<br>
+      And some…<br>
+      don't end with one either.<br><br>
+      They just continue.<br>
+      Quietly.<br>
+      In the spaces between words.<br>
+      In small moments nobody else noticed.<br>
+      <em style="color:var(--gold);">In a goodbye that meant more than goodbye.</em>
+    </p>
+    <div class="od" style="animation-delay:1.7s"><span></span><i></i><span></span></div>
+    <p class="fc">
+      I don't know if you'll ever read this.<br>
+      But if you do…<br>
+      you already know who you are to me.<br>
+      <em style="color:rgba(196,122,138,.65);">You always did.</em>
+    </p>
+  </div>
+</div>
+
+</div><!-- #story -->
+
+<script>
+const TOTAL = 12;
+let cur = 0, busy = false;
+const ovl = document.getElementById('ovl');
+const navEl = document.getElementById('nav');
+const pgl  = document.getElementById('pgl');
+
+// cursor
+const cdEl=document.getElementById('cd'), crEl=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){
+  if(cdEl){cdEl.style.left=mx+'px';cdEl.style.top=my+'px';}
+  rx+=(mx-rx)*.13;ry+=(my-ry)*.13;
+  if(crEl){crEl.style.left=rx+'px';crEl.style.top=ry+'px';}
+  requestAnimationFrame(tick);
+})();
+
+// particles
+const pc=document.getElementById('ptc');
+for(let i=0;i<26;i++){
+  const p=document.createElement('div');p.className='p';
+  const s=Math.random()*2+.7;
+  p.style.cssText=`left:${Math.random()*100}vw;width:${s}px;height:${s}px;animation-duration:${Math.random()*13+8}s;animation-delay:${Math.random()*13}s;`;
+  pc.appendChild(p);
+}
+
+// stars
+function mkS(id,n){
+  const c=document.getElementById(id);if(!c)return;
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div');s.className='str';
+    const sz=Math.random()*1.7+.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*3+2}s;animation-delay:${Math.random()*4}s;`;
+    c.appendChild(s);
+  }
+}
+mkS('st0',130);mkS('st1',65);mkS('st5',45);mkS('st11',115);
+
+// dots
+const dotsEl=document.getElementById('dots');
+for(let i=0;i<TOTAL;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' on':'');
+  dotsEl.appendChild(d);
+}
+function updDots(i){document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('on',j===i));}
+
+// section labels — kept for analytics only, swipe hint is static
+const labs=['','I','II','III','IV','V','VI','VII','VIII','IX','X',''];
+function updLabel(i){ /* label used for analytics only */ }
+
+// analytics
+function track(i){
+  if(window.gtag)gtag('event','section_view',{section_index:i,section_label:labs[i]||'closing'});
+  if(window.clarity)clarity('event','section_'+i);
+}
+
+// navigate
+function go(idx){
+  if(busy||idx===cur||idx<0||idx>=TOTAL)return;
+  busy=true;
+  ovl.classList.add('on');
+  setTimeout(()=>{
+    document.getElementById('s'+cur).classList.remove('active');
+    cur=idx;
+    const nx=document.getElementById('s'+cur);
+    // re-trigger CSS animations
+    nx.querySelectorAll('.bt,.po,.pq,.ey,.st,.hs,.od,.ltr,.pw,.fn,.ff,.fc,.zw').forEach(el=>{
+      el.style.animation='none';
+      void el.offsetWidth;
+      el.style.animation='';
+    });
+    nx.classList.add('active');
+    // reset zoom on page change
+    zoomScale=1;panX=0;panY=0;initPanX=0;initPanY=0;
+    document.querySelectorAll('.ct').forEach(el=>{el.style.transform='';el.style.transition='';});
+    updDots(cur);
+    if(cur>=1)navEl.classList.add('show'); else navEl.classList.remove('show');
+    track(cur);
+    ovl.classList.remove('on');
+    setTimeout(()=>{busy=false;},620);
+  },500);
+}
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(cur-1);
+});
+
+// touch — pinch to zoom follows fingers, single-finger swipe navigates
+let tx=0,ty=0,isPinch=false;
+let zoomScale=1;
+let initDist=0, initScale=1;
+let initMid={x:0,y:0};
+let panX=0,panY=0,initPanX=0,initPanY=0;
+
+function getDist(t){
+  const dx=t[0].clientX-t[1].clientX;
+  const dy=t[0].clientY-t[1].clientY;
+  return Math.sqrt(dx*dx+dy*dy);
+}
+function getMid(t){
+  return {x:(t[0].clientX+t[1].clientX)/2, y:(t[0].clientY+t[1].clientY)/2};
+}
+function getZoomEl(){
+  return document.getElementById('s'+cur).querySelector('.ct');
+}
+function applyTransform(sc,px,py){
+  const el=getZoomEl(); if(!el)return;
+  el.style.transition='';
+  el.style.transformOrigin='0 0';
+  el.style.transform=`translate(${px}px,${py}px) scale(${sc})`;
+}
+function snapBack(){
+  const el=getZoomEl(); if(!el)return;
+  el.style.transition='transform .25s ease';
+  el.style.transformOrigin='0 0';
+  el.style.transform='';
+  setTimeout(()=>{if(el)el.style.transition='';},260);
+}
+
+document.addEventListener('touchstart',e=>{
+  if(e.touches.length===2){
+    isPinch=true;
+    initDist=getDist(e.touches);
+    initScale=zoomScale;
+    initMid=getMid(e.touches);
+    initPanX=panX;
+    initPanY=panY;
+  } else if(e.touches.length===1 && !isPinch){
+    tx=e.touches[0].clientX;
+    ty=e.touches[0].clientY;
+  }
+},{passive:true});
+
+document.addEventListener('touchmove',e=>{
+  if(e.touches.length===2){
+    isPinch=true;
+    const dist=getDist(e.touches);
+    const mid=getMid(e.touches);
+    const sc=Math.min(Math.max(initScale*(dist/initDist),1),4);
+    // pan so the pinch midpoint stays under fingers
+    const px=initPanX + (mid.x - initMid.x) + initMid.x*(initScale-sc);
+    const py=initPanY + (mid.y - initMid.y) + initMid.y*(initScale-sc);
+    zoomScale=sc; panX=px; panY=py;
+    applyTransform(sc,px,py);
+  }
+},{passive:true});
+
+document.addEventListener('touchend',e=>{
+  if(e.touches.length===0 && isPinch){
+    isPinch=false;
+    if(zoomScale<1.15){
+      zoomScale=1;panX=0;panY=0;
+      snapBack();
+    }
+    return;
+  }
+  if(isPinch) return;
+  if(zoomScale>1.1) return;
+  const dx=e.changedTouches[0].clientX-tx;
+  const dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>40){if(dy<0)go(cur+1);else if(dy>0&&cur>1)go(cur-1);}
+  else if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){if(dx<0)go(cur+1);else if(dx>0&&cur>1)go(cur-1);}
+},{passive:true});
+
+// init — set static swipe hint text
+pgl.textContent = 'swipe to navigate';
+track(0);
+</script>
+</body>
+</html>
